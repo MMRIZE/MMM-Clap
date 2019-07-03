@@ -1,5 +1,5 @@
 # MMM-Clap
-MagicMirror controlling with hand-clap or finger-snap
+MagicMirror controller by hand-clap or finger-snap
 
 ![screenshot](./screenshot.png)
 
