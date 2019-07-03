@@ -1,3 +1,7 @@
+#CLAP {
+  width:auto;
+}
+
 #CLAP.shown #CLAP_CONTAINER {
   display:flex;
   flex-wrap:nowrap;

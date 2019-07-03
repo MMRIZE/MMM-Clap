@@ -6,58 +6,30 @@ Module.register("MMM-Clap", {
   defaults: {
     useDisplay:true,
     startOnBoot: true,
-
     detector: {
       recordBackbone: "alsa", // "waveaudio", "coreaudio"
       recordDevice: "plughw:1", // "-d", "default"
+      //For
+
       thresholdDetectionStart: "5%", // minimum noise percentage threshold necessary to start recording sound (0~100%)
       thresholdDetectionEnd: "5%", // minimum noise percentage threshold necessary to end recording sound (0~100%)
       thresholdClapAmplitude: 0.7, // minimum amplitude threshold to be considered as clap (0~1)
       thresholdClapEnergy: 0.3, // maximum energy threshold to be considered as clap (0~1)
       duration: 500,
     },
-
     clapsTimeout:1000,
     sequenceTimeout:2000,
-
     defaultCommandMode: "MODE_DEFAULT",
     commands: {
       "MODE_DEFAULT": {
         "1": {
-          moduleExec: {
-            module: [],
-            exec: (module) => {
-              module.hide()
-              if (module.name == "MMM-Clap") module.notificationReceived("CLAP_MODE", "MODE_HIDE")
-            }
+          notificationExec: {
+            notification: "SHOW_ALERT",
+            payload: {message: "You clapped.", timer:3000}
           },
           restart:true,
-          alias: "COMMAND:HIDE"
         },
-        "1-1": {
-          moduleExec: {
-            module: ["MMM-Clap"],
-            exec:(module) => {
-              console.log("Do something")
-            }
-          },
-          restart:false,
-          //alias: "test"
-        }
       },
-      "MODE_HIDE": {
-        "1": {
-          moduleExec: {
-            module: [],
-            exec: (module) => {
-              module.show()
-              if (module.name == "MMM-Clap") module.notificationReceived("CLAP_MODE", "MODE_DEFAULT")
-            }
-          },
-          restart: true,
-          alias: "COMMAND:SHOW"
-        }
-      }
     }
   },
 
@@ -139,15 +111,16 @@ Module.register("MMM-Clap", {
       if (command.hasOwnProperty("notificationExec")) {
         var ex = command.notificationExec
         var nen = (ex.hasOwnProperty("notification")) ? ex.notification : this.config.notifications.DETECTED
-        var nenf = (typeof nen == "function") ? nen(htoword, file) : nen
-        var nep = (ex.hasOwnProperty("payload")) ? ex.payload : { hotword: hotword, file: file }
-        var nepf = (typeof nep == "function") ? nep(hotword, file) : nep
+        var nenf = (typeof nen == "function") ? nen() : nen
+        var nep = (ex.hasOwnProperty("payload")) ? ex.payload : null
+        var nepf = (typeof nep == "function") ? nep() : nep
+        nepf = (typeof nepf == "object") ? Object.assign({}, nepf) : nepf
         this.sendNotification(nenf, nepf)
       }
       if (command.hasOwnProperty("shellExec")) {
         var ex = command.shellExec
         var see = (ex.hasOwnProperty("exec")) ? ex.exec : null
-        var seef = (typeof see == "function") ? see(hotword, file) : see
+        var seef = (typeof see == "function") ? see() : see
         if (seef) this.sendSocketNotification("SHELL_EXEC", seef)
       }
       if (command.hasOwnProperty("moduleExec")) {
