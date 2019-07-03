@@ -1,6 +1,8 @@
 # MMM-Clap
 Clap/Snap detector for MagicMirror
 
+![screenshot](./screenshot.png)
+
 
 ## Installation
 ### 0.PreInstall
