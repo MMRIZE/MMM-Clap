@@ -1,0 +1,25 @@
+{
+  "name": "mmm-clap",
+  "version": "1.0.0",
+  "description": "Clap/Snap detector module for MagicMirror",
+  "main": "MMM-Clap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eouia/MMM-Clap.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "clap",
+    "snap"
+  ],
+  "author": "eouia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eouia/MMM-Clap/issues"
+  },
+  "homepage": "https://github.com/eouia/MMM-Clap#readme",
+  "dependencies": {}
+}

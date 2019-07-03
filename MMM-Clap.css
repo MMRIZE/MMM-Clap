@@ -1,0 +1,57 @@
+#CLAP.shown #CLAP_CONTAINER {
+  display:flex;
+  flex-wrap:nowrap;
+  justify-content: flex-start;
+}
+
+#CLAP.hidden {
+  display:none;
+}
+
+#CLAP_CONTAINER {
+  height: 56px;
+  min-width: 56px;
+  background-color: #FFF;
+  border-radius: 28px;
+  border: 4px;
+  box-sizing: border-box;
+  padding-top: 4px;
+  padding-left: 4px;
+  color:#666;
+}
+
+#CLAP_ICON {
+  order:0;
+  width:48px;
+  height:48px;
+  background-image: url("/modules/MMM-Clap/fingersnap.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 24px;
+  background-color: #999;
+}
+
+#CLAP_CONTAINER.final #CLAP_ICON.matched {
+  background-color:#36F;
+}
+
+#CLAP_CONTAINER.final #CLAP_ICON.unmatched {
+  background-color:#F63;
+}
+
+#CLAP_SEQUENCE.exist {
+  padding-left:5px;
+  padding-right:15px;
+}
+
+#CLAP_CONTAINER.final #CLAP_SEQUENCE {
+  padding-left:5px;
+  padding-right:15px;
+  color:#000;
+}
+
+#CLAP_CONTAINER.final {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
