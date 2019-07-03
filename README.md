@@ -1,5 +1,5 @@
 # MMM-Clap
-Clap/Snap detector for MagicMirror
+MagicMirror controlling with hand-clap or finger-snap
 
 ![screenshot](./screenshot.png)
 
