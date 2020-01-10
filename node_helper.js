@@ -17,6 +17,7 @@ module.exports = NodeHelper.create({
   },
 
   stopClap: function(cb=()=>{}) {
+    if(!this.detector) return console.log("[CLAP] Already Stopped.")
     this.detector.stop()
     this.detector = null
     console.log("[CLAP] Stops.")
